@@ -1,0 +1,14 @@
+Resources:
+
+  VpcsetupStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: !Sub https://cloudformationfilesdata.s3.ap-south-1.amazonaws.com/vpc.yml
+      TimeoutInMinutes: 50
+
+  ECSsetupStack:
+    Type: AWS::CloudFormation::Stack
+    DependsOn: VpcsetupStack
+    Properties:
+      TemplateURL: !Sub https://cloudformationfilesdata.s3.ap-south-1.amazonaws.com/ECS-Cluster-Setup-With-LB.yml
+      TimeoutInMinutes: 20
